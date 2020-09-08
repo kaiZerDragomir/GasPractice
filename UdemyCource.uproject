@@ -1,0 +1,16 @@
+{
+	"FileVersion": 3,
+	"EngineAssociation": "{27C71B36-45E1-2619-2D04-DB9B7BF70D22}",
+	"Category": "",
+	"Description": "",
+	"Modules": [
+		{
+			"Name": "UdemyCource",
+			"Type": "Runtime",
+			"LoadingPhase": "Default",
+			"AdditionalDependencies": [
+				"Engine"
+			]
+		}
+	]
+}
