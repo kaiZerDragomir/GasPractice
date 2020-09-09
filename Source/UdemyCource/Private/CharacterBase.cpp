@@ -3,6 +3,9 @@
 
 #include "CharacterBase.h"
 
+#include "Kismet/GameplayStatics.h"
+#include "Kismet/KismetMathLibrary.h"
+
 // Sets default values
 ACharacterBase::ACharacterBase()
 {
@@ -30,5 +33,22 @@ void ACharacterBase::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
+	PlayerInputComponent->BindAction("Jump", EInputEvent::IE_Pressed,  this, &ACharacter::Jump);
+	PlayerInputComponent->BindAxis("MoveForward", this, &ACharacterBase::MoveForward);
+	PlayerInputComponent->BindAxis("MoveRight", this, &ACharacterBase::MoveRight);
+}
+
+void ACharacterBase::MoveForward(float Value)
+{
+	const FRotator& CameraRotation = UGameplayStatics::GetPlayerCameraManager(GetWorld(), 0)->GetCameraRotation();
+	const FVector& ForwardVector = CameraRotation.Vector();
+	AddMovementInput(ForwardVector, Value);
+}
+
+void ACharacterBase::MoveRight(float Value)
+{
+	const FRotator& CameraRotation = UGameplayStatics::GetPlayerCameraManager(GetWorld(), 0)->GetCameraRotation();
+	const FVector& RightVector = UKismetMathLibrary::GetRightVector(CameraRotation);
+	AddMovementInput(RightVector, Value);	
 }
 
