@@ -29,4 +29,8 @@ public:
 private:
 	void MoveRight(float Value);
 	void MoveForward(float Value);
+
+public:
+	UFUNCTION(BlueprintImplementableEvent)
+	void MeleeAttack();
 };

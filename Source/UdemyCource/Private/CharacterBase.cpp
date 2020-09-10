@@ -36,6 +36,8 @@ void ACharacterBase::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 	PlayerInputComponent->BindAction("Jump", EInputEvent::IE_Pressed,  this, &ACharacter::Jump);
 	PlayerInputComponent->BindAxis("MoveForward", this, &ACharacterBase::MoveForward);
 	PlayerInputComponent->BindAxis("MoveRight", this, &ACharacterBase::MoveRight);
+
+	PlayerInputComponent->BindAction("PrimaryAction", EInputEvent::IE_Pressed, this, &ACharacterBase::MeleeAttack);
 }
 
 void ACharacterBase::MoveForward(float Value)
